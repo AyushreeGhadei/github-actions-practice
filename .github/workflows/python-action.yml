@@ -1,4 +1,4 @@
-name: Python Practice Action
+name: Python Practice Action (Docker)
 
 on:
   push:
@@ -6,25 +6,15 @@ on:
       - main
 
 jobs:
-  run-python:
+  run-docker:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
 
       - name: Build Docker image
         run: docker build -t python-action-app .
 
-       - name: Run Docker container
-         run: docker run python-action-app
-         
-     
-
-
-    
+      - name: Run Docker container
+        run: docker run python-action-app
